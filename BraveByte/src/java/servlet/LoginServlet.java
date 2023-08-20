@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             } else if (rs.isRole() == true) {
                 HttpSession session = request.getSession();               
                 session.setAttribute("acc", rs);
-                response.sendRedirect("adminpage");
+                response.sendRedirect("admin.jsp");
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", rs.getId()); 
