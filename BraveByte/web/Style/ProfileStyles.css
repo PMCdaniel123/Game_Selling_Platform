@@ -97,7 +97,7 @@ body {
     
 }
 .body-page{
-    margin-top: 0vh;
+    margin-top: -4vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -173,10 +173,12 @@ body {
 }
 .info p{
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 10px !important;
     background-color: #cfcfcf5d;
     border-radius: 3px;
     padding: 10px;
+    margin: 0;
+     white-space: nowrap;
 }
 .basic-info2{
 

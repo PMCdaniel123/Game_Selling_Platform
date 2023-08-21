@@ -20,7 +20,10 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Montserrat&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
     </head>
-
+                <%
+                    Integer id = (Integer)session.getAttribute("adminID");
+                    if (id !=null) {
+                %>
     <body>
         <div class="page">
             <div class="head-page">
@@ -29,7 +32,9 @@
                 <div class="head-page_select">
                     <a href="" class="selection">ADMINISTRATOR</a>
                 </div>
-                <div class="head-page_user"></div>
+                <div class="head-page_user">
+                    <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+                </div>
             </div>
             <div class="body-page">
                 <h1>PARAMETER</h1>
@@ -206,5 +211,15 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     </body>
+    <%
+        }else{
+
+    %>
+    <body>
+        <h1 class='alert-admin'>Don't do that babe</h1>
+    </body>
+    <%
+        }
+    %>
 
 </html>

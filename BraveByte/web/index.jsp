@@ -36,10 +36,10 @@
                     <div class="login">
                         <h1>Wellcome to BRAVEBYTE</h1>
                         <h2>SIGN IN</h2>
-                        <form action="LoginServlet" method="POST">
+                        <form action="LoginServlet" method="POST" class="input-fields">
                             <input type="text" name="ussignin" id="" placeholder="Username">
                             <input type="password" name="pwsignin" id="" placeholder="Password" required>
-                            <button>SIGN IN</button>
+                            <button class = form-button >SIGN IN</button>
                         </form>
 
                         <button class=" forgot-password-button forgot-pass-login">Forgot your password ?</button>
@@ -48,16 +48,16 @@
                     <div class="sign-up">
                         <h1>Wellcome to BRAVEBYTE</h1>
                         <h2>SIGN UP</h2>
-                        <form action="RegisterServlet" method="POST">
-                            <input type="text" name="usnregister" id="" placeholder="Username">
-                            <input type="text" name="emailregister" id="" placeholder="Email">
-                            <input type="password" name="pwregister" id="" placeholder="Password" required>
-                            <input type="password" name="rpwregister" id="" placeholder="ReType Password" required>
-                            <input type="text" name="fullnameregister" id="" placeholder="FullName">
-                            <input type="text" name="phoneregister" id="" placeholder="Phone">
+                        <form action="RegisterServlet" method="POST" class="input-fields-2">
+                            <div class ="sub-field"><input type="text" name="usnregister" id="" placeholder="Username">
+                                <input type="text" name="emailregister" id="" placeholder="Email"></div>
+                            <div class="sub-field"><input type="password" name="pwregister" id="" placeholder="Password" required>
+                                <input type="password" name="rpwregister" id="" placeholder="ReType Password" required></div>
+                            <div class ="sub-field"><input type="text" name="fullnameregister" id="" placeholder="FullName">
+                                <input type="text" name="phoneregister" id="" placeholder="Phone"></div>
 
 
-                            <button>SIGN UP</button>
+                            <button class = form-button>SIGN UP</button>
                         </form>
 
                     </div>
@@ -65,14 +65,14 @@
                     <div class="forgot-password">
                         <h1>Wellcome to BRAVEBYTE</h1>
                         <h2>FORGOT PASSWORD</h2>
-                        <form action="ForgotPasswordServlet" method="POST">
+                        <form action="ForgotPasswordServlet" method="POST" class="input-fields">
                             <input type="text" name="femail" id="" placeholder="Enter your email">
-                        <input type="text" name="fphone" id="" placeholder="Enter your phone number">
-                        <input type="password" name="fnewpw" id="" placeholder="New Password" required>
-                        <input type="password" name="fretypepw" id="" placeholder="ReType New Password" required>
-                        <button>CONFIRM</button>
+                            <input type="text" name="fphone" id="" placeholder="Enter your phone number">
+                            <input type="password" name="fnewpw" id="" placeholder="New Password" required>
+                            <input type="password" name="fretypepw" id="" placeholder="ReType New Password" required>
+                            <button class = form-button>CONFIRM</button>
                         </form>
-                        
+
                     </div>
 
                 </div>
@@ -81,15 +81,21 @@
                         <div class="body-contain_choose">
                             <p>Conduct by FPT Team</p>
                             <h1>BRAVEBYTE</h1>
-                            <p> Trời ơi cho em câu sologan điii, Lorem ipsum quài ngán quáaaaaaa Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Alias omnis libero rem optio. Blanditiis delectus, </p>
+                            <p> Dive into the ever-changing realm of gaming, where you'll encounter a roller coaster of emotions, challenges, and triumphs that will keep you on the edge of your seat.</p>
                         </div>
                         <div class="body-button">
                             <button class="login-button">LOGIN</button>
                             <button class="sign-up-button">SIGN UP</button>
                             <%
-                            if(request.getParameter("status")!=null){
-                            out.println(request.getParameter("status"));
+                                if (request.getParameter("status") != null) {
+                            %>
+                            <script>
+                                function showAlert() {
+                                    alert("Username or password were incorrect !");
+                                }
+                                showAlert();
+                            </script>
+                            <%
                                 }
                             %>
                         </div>

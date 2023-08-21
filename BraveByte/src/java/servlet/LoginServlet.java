@@ -40,10 +40,12 @@ public class LoginServlet extends HttpServlet {
             Account rs = accountDAO.getAccount(username, password);
             if (rs.getUsername() == null) {
                 response.sendRedirect("index.jsp?status=Failed to Login!!");
+            
             } else if (rs.isRole() == true) {
                 HttpSession session = request.getSession();               
                 session.setAttribute("acc", rs);
-                response.sendRedirect("admin.jsp");
+                session.setAttribute("adminID", rs.getId()); 
+                response.sendRedirect("Admin.jsp");
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", rs.getId()); 
