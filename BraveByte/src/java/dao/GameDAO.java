@@ -79,22 +79,22 @@ public class GameDAO extends DBContext{
     public ArrayList<Game> getTop3Games() {
         ArrayList<Game> list = new ArrayList<>();
 
-        String sql = "SELECT TOP 3 Rating, * FROM dbo.Game";
+        String sql = "SELECT TOP 3 * FROM dbo.Game ORDER BY Rating DESC";
         try {
             PreparedStatement pst = connection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Game game = new Game();
-                game.setId(rs.getInt(2));
-                game.setTitle(rs.getString(3));
-                game.setDescription(rs.getString(4));
-                game.setAuthor(rs.getString(5));
-                game.setKind(rs.getString(6));
-                game.setPoster(rs.getString(7));
-                game.setBackground(rs.getString(8));
-                game.setPrice(rs.getInt(9));
-                game.setCreated_at(rs.getString(10));
-                game.setRating(rs.getInt(11));
+                game.setId(rs.getInt(1));
+                game.setTitle(rs.getString(2));
+                game.setDescription(rs.getString(3));
+                game.setAuthor(rs.getString(4));
+                game.setKind(rs.getString(5));
+                game.setPoster(rs.getString(6));
+                game.setBackground(rs.getString(7));
+                game.setPrice(rs.getInt(8));
+                game.setCreated_at(rs.getString(9));
+                game.setRating(rs.getInt(10));
                 list.add(game);
             }
         } catch (SQLException ex) {

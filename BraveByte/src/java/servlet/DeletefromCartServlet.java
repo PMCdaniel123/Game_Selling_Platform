@@ -63,7 +63,7 @@ public class DeletefromCartServlet extends HttpServlet {
        String idGameStr = request.getParameter("idGame");
        int idGame = Integer.parseInt(idGameStr);
           CartDAO cartDAO = new CartDAO();
-        cartDAO.removeGameFromCart(request, idGame);
+        cartDAO.removeGameFromCart(session, idGame);
          response.sendRedirect(request.getHeader("referer"));
 }
 }

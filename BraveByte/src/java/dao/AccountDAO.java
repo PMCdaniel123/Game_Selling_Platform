@@ -37,7 +37,7 @@ public class AccountDAO extends DBContext {
                 acc.setUsername(rs.getString(2));
                 acc.setEmail(rs.getString(3));
                 acc.setPassword(rs.getString(4));
-                acc.setUsername(rs.getString(5));
+                acc.setFullname(rs.getString(5));
                 acc.setPhone(rs.getString(6));
                 if (rs.getInt(7) == 1) {
                     role = true;
@@ -50,6 +50,24 @@ public class AccountDAO extends DBContext {
             ex.printStackTrace();
         }
         return accounts;
+    }
+    public int numberofgame(int id) {
+        int count = 0;
+        String sql ="SELECT COUNT(*) FROM dbo.Library WHERE AccID = ?";
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {                
+                count = rs.getInt(1);
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return count;
+        
     }
 
     public void deleteAccount(int id) {
@@ -79,7 +97,7 @@ public class AccountDAO extends DBContext {
                 acc.setUsername(rs.getString(2));
                 acc.setEmail(rs.getString(3));
                 acc.setPassword(rs.getString(4));
-                acc.setUsername(rs.getString(5));
+                acc.setFullname(rs.getString(5));
                 acc.setPhone(rs.getString(6));
                 if (rs.getInt(7) == 1) {
                     role = true;

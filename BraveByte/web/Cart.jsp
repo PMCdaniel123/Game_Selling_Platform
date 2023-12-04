@@ -14,7 +14,28 @@
 </head>
 
 <body>
+
     <div class="page">                  
+        
+        <div class="head-page">
+            <img src="img/white.jpg" alt="">
+            <div class="head-page_logo">BRAVE<ion-icon id='logo' name="shield-outline"></ion-icon>BYTE</div>
+            <div class="head-page_select">
+                <a href="home.jsp" class="selection">HOME</a>
+                <a href="games.jsp" class="selection">GAMES</a>
+
+
+                <a href="bill" class="selection">TRANSACTION</a>
+
+                <a href="library" class="selection">LIBRARY</a>
+                 
+            </div>
+            <div class="head-page_user">
+                <a href="cart" class="selection"><ion-icon name="cart-outline"></ion-icon></a>
+                <a href="Profile.jsp" class="selection"><ion-icon name="person-circle-outline"></ion-icon></a>
+                  <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+            </div>
+        </div>
 
         <div class="body-page">
             <h1 > Cart </h1>
@@ -33,13 +54,11 @@
                     <div class="section name">${x.title}</div>
                     <div class="section category"><p>${x.kind}</p> </div>
                     <div class="section price">${x.price}</div>
-                    <div class="section buttons"> <button class="more-info"> <ion-icon name="alert-circle-outline"></ion-icon> </button>
-                        <form method="post" action="deletefromcart">
-                      
+                    <div class="section buttons"> 
+                        <form method="post" action="deletefromcart">                     
                          <input type="hidden" name="idGame" value="${x.id}" />
                         <button class = delete > <ion-icon name="close-circle-outline"></ion-icon> </button></form> </div>
                 </div>
-
                     </c:forEach>
  
 
@@ -48,6 +67,7 @@
                 <div class="total-amount">
                     <h3> Total Amount</h3>
                     <p><%= request.getAttribute("count")%></p>
+                     
                 </div>              
                 <div class="payment">
                     <h3>Payment</h3>
@@ -66,11 +86,12 @@
                             <p class=check-mark> <ion-icon name="logo-paypal"></ion-icon> </p>
                         </label>
                     </div>
-                </div>
+                </div> 
                 <form method="post" action="addgamelibrary">
-                   <c:forEach items="${cart}" var="x">
-        <input type="hidden" name="idGames" value="${x.id}" />
-                   </c:forEach>
+                  <c:forEach items="${cart}" var="x">
+                   <input type="hidden" name="idGame" value="${x.id}" />
+                  </c:forEach>
+                   <input type="hidden" name="total" value="<%= request.getAttribute("totalPrice")%>" />
                 <button class="purchase"> <ion-icon name="download-outline"></ion-icon> </button></form>
 
             </div>

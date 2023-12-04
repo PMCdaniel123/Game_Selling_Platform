@@ -30,7 +30,7 @@
         <%
             GameDAO gdao = new GameDAO();
             PaggingDAO pdao = new PaggingDAO();
-            Pagging pagging = pdao.getListNews(1, 4);
+            Pagging pagging = pdao.getListGames(1, 4);
             int count = gdao.getGameList().size();
 
             int numberPage = (int) Math.ceil((count * 1.0) / pagging.getPerPage());
@@ -44,11 +44,30 @@
             }
         %>
         <div class="page">
-            <%@include file="header.jsp" %>
+            
+        <div class="head-page">
+            <img src="img/white.jpg" alt="">
+            <div class="head-page_logo">BRAVE<ion-icon id='logo' name="shield-outline"></ion-icon>BYTE</div>
+            <div class="head-page_select">
+                <a href="home.jsp" class="selection">HOME</a>
+                <a href="games.jsp" class="selection selected">GAMES</a>
+
+                <a href="bill" class="selection">TRANSACTION</a>
+
+                <a href="library" class="selection">LIBRARY</a>
+                 
+            </div>
+            <div class="head-page_user">
+                <a href="cart" class="selection"><ion-icon name="cart-outline"></ion-icon></a>
+                <a href="Profile.jsp" class="selection"><ion-icon name="person-circle-outline"></ion-icon></a>
+                  <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+            </div>
+        </div>
+
 
             <div class="body-page">
-                <div class="body-up">
-                    <form action="main" method="get">
+                <div class="">
+                    <form action="main" method="get" class="body-up">
                         <div class="search-input">
                             <input type="text" class="search" placeholder="Enter game name or publicer" name="txtSearch">
                             <div class="search-price">
@@ -57,7 +76,8 @@
                             </div>
                         </div>
                         <div class="search-choose">
-                            <div class="sort-buttons">
+                            <div class="sort-fields">
+                                <div class="sort-buttons">
                                 <label class="category action">
                                     <input type="radio" name="kind" id="adventure" value="1">
                                     <p class=check-mark>Action</p>
@@ -91,6 +111,7 @@
                                 </label>
                             </div>
 
+                            </div>
                             <button class = search-button name="action" value="search"> <ion-icon name="search-outline"></ion-icon> </button>
                         </div>
                     </form>
@@ -104,7 +125,7 @@
                         <div class="game RDR2" style="background-image: url('<%= game.getPoster()%>');">
                             <div class="black-bgr"></div>
                             <div class="game-rate">
-                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <ion-icon name="bookmark-sharp"></ion-icon>
                                 <p><%= game.getRating()%></p>
                             </div>
                             <div class="game-descript">
@@ -112,7 +133,7 @@
                                 <h3 class="game-price">Price : <%= game.getPrice()%>$</h3>
                             </div>
                             <div class="game-button">
-                                <button class="game-info"> <ion-icon name="alert-outline"></ion-icon> </button>
+ 
                                 <form method="post" action="addgametocart">
                                  <input type="hidden" name="idGame" value="<%= game.getId()%>" />
                                 <button class="add-to-cart"> <ion-icon name="cart-outline"></ion-icon></button></form>

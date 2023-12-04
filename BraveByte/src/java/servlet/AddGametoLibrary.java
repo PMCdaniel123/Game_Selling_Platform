@@ -4,9 +4,14 @@
  */
 package servlet;
 
+import dao.BillDAO;
 import dao.CartDAO;
 import dao.LibraryDAO;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Bill;
 import model.Game;
 
 /**
@@ -59,38 +65,42 @@ public class AddGametoLibrary extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        LibraryDAO i= new LibraryDAO();
-        HttpSession session = request.getSession();
-        String idGameStr = request.getParameter("idGame");
-        if (idGameStr!=null) {
-            int idGame = Integer.parseInt(idGameStr);
-        i.addGameToLibrary(request, idGame);
-       CartDAO cartDAO = new CartDAO();
-              List<Game> cartGames = cartDAO.getAllGamesForUser(request);
-              if (cartGames!=null) {
-             for (Game game : cartGames) {
-                  cartDAO.removeGameFromCart(request, game.getId());
-}             
-              response.sendRedirect("cart");
-        } else {
-              response.sendRedirect("cart");   
-        }
-        }
+ 
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    LibraryDAO libraryDAO = new LibraryDAO();
+    CartDAO cartDAO = new CartDAO();
+    HttpSession session = request.getSession();
+        List<Game> cartGames = cartDAO.getAllGamesForUser(request);
         
-       response.sendRedirect("cart");
-             
+        if (cartGames != null) {
+            for (Game game : cartGames) {
+                 libraryDAO.addGameToLibrary(session, game.getId());
+                 cartDAO.removeGameFromCart(session, game.getId());
+            }
+            BillDAO billDAO = new BillDAO();
+    Bill newBill = new Bill();
+    
+   
+     int userId = (int) session.getAttribute("userId");
+    newBill.setAccID(userId);
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String formattedDate = currentDate.format(formatter);
+    newBill.setBillDate(formattedDate);
+    double total =0;
+    for (Game game : cartGames) {
+       total =total + game.getPrice();
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    newBill.setTotal(total); 
+    billDAO.createBillAndBillDetails(newBill, cartGames);
+     }   
+    response.sendRedirect("home.jsp");
 }
+   
+}
+
+   
+   
+
+

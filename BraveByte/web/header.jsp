@@ -5,8 +5,10 @@
             <div class="head-page_select">
                 <a href="home.jsp" class="selection">HOME</a>
                 <a href="games.jsp" class="selection">GAMES</a>
-                
-                <a href="" class="selection">TRANSACTION</a>
+
+      
+                <a href="bill" class="selection">TRANSACTION</a>
+
                 <a href="library" class="selection">LIBRARY</a>
                  
             </div>

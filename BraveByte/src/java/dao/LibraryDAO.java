@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.Game;
 import service.DBContext;
 
@@ -40,8 +41,8 @@ public class LibraryDAO extends DBContext {
         }
         return games;
     }
-        public void addGameToLibrary(HttpServletRequest request, int gameId) {
-        int userId = (int) request.getSession().getAttribute("userId");
+        public void addGameToLibrary(HttpSession session, int gameId) {
+        int userId = (int) session.getAttribute("userId");
 
         String sql = "INSERT INTO dbo.Library (AccID, GID) VALUES (?, ?)";
 
@@ -54,7 +55,7 @@ public class LibraryDAO extends DBContext {
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception appropriately
+            
         }
     }
    

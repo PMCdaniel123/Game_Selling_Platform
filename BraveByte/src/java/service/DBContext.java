@@ -24,7 +24,7 @@ public class DBContext {
         try {
             String url = "jdbc:sqlserver://localhost:1433;databasename=Fsoft_FinalProject";
             String uid = "sa";
-            String pwd = "123";
+            String pwd = "123456";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, uid, pwd);
             

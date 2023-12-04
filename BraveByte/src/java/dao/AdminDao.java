@@ -7,6 +7,9 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import model.Game;
+import model.Pagging;
 import service.DBContext;
 
 /**
@@ -52,5 +55,55 @@ public class AdminDao extends DBContext {
         }
 
     }
+    public int getCountGames() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM dbo.Game";
+        
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1); // cột 1 là số lượng tin tức, thay vì dùng tên cột thì dùng index cột
+            }
 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return count;
+    }
+    public int getCountAccounts() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM dbo.Account";
+        
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1); // cột 1 là số lượng tin tức, thay vì dùng tên cột thì dùng index cột
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return count;
+    }
+    public int getCountBills() {
+    int count = 0;
+    String sql = "SELECT COUNT(*) FROM dbo.Bill";
+
+    try {
+        PreparedStatement pst = connection.prepareStatement(sql);
+
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            count = rs.getInt(1); 
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return count;
+}
 }

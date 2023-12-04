@@ -4,6 +4,7 @@
     Author     : acer
 --%>
 
+<%@page import="dao.AdminDao"%>
 <%@page import="model.Account"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.AccountDAO"%>
@@ -37,6 +38,10 @@
                 </div>
             </div>
             <div class="body-page">
+                <%
+                    AdminDao admin = new AdminDao();
+                    
+                %>
                 <h1>PARAMETER</h1>
                 <div class="parameters">
 
@@ -45,7 +50,8 @@
                         <div class="deco1"></div>
                         <div class="deco2"></div>
 
-                        <ion-icon name="game-controller-outline"></ion-icon> 55
+                        <h6>Super Team</h6>
+                        
 
                     </div>
 
@@ -53,7 +59,7 @@
                         <div class="deco1"></div>
                         <div class="deco2"></div>
 
-                        <ion-icon name="people-outline"></ion-icon></ion-icon> 35
+                        <ion-icon name="people-outline"></ion-icon></ion-icon> <%= admin.getCountAccounts()%>
 
                     </div>
 
@@ -61,7 +67,7 @@
                         <div class="deco1"></div>
                         <div class="deco2"></div>
 
-
+                        <ion-icon name="game-controller-outline"></ion-icon> <%= admin.getCountGames()%>
 
                     </div>
 
@@ -69,7 +75,7 @@
                         <div class="deco1"></div>
                         <div class="deco2"></div>
 
-
+                        <a href="showallbill"><ion-icon name="document-text-outline"></ion-icon><%= admin.getCountBills()%></a>
 
                     </div>
 

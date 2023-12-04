@@ -6,6 +6,7 @@
 package servlet;
 
 import dao.GameDAO;
+import dao.PaggingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Game;
+import model.Pagging;
 
 /**
  *
@@ -52,16 +54,36 @@ public class SearchServlet extends HttpServlet {
             }
 
             GameDAO gdao = new GameDAO();
-            ArrayList<Game> searchs = gdao.searchGames(keyword, minimum, maximum, kind,sort);
-//            for (Game search : searchs) {
-//                System.out.println(search);
-//            }
+//            ArrayList<Game> searchs = gdao.searchGames(keyword, minimum, maximum, kind,sort);
+            
+            PaggingDAO paggingDAO = new PaggingDAO();
+            String currentPage = request.getParameter("currentPage");
+            int page = 1;
+            Pagging pagging = null;
+            
+            if (currentPage != null) {
+                page = Integer.parseInt(currentPage);
+            }
+            int perPage = 4;
+            pagging = paggingDAO.getListSearch(keyword, minimum, maximum, kind, sort, page, perPage);
+            for (Game item : pagging.getItems()) {
+                System.out.println(item);
+            }
+            double tt = (pagging.getTotal() * 1.0) / perPage;
+            int numberPage = (int) Math.ceil(tt);
+            
+            request.setAttribute("listGame", pagging.getItems());
+            request.setAttribute("page", pagging.getPage());
+            request.setAttribute("total", pagging.getTotal());
+            request.setAttribute("numberPage", numberPage);
+            request.setAttribute("pagging", pagging);
 
-            request.setAttribute("searchs", searchs);
+//            request.setAttribute("searchs", searchs);
             request.setAttribute("keyword", keyword);
             request.setAttribute("maximum", maximum);
             request.setAttribute("minimum", minimum);
             request.setAttribute("sort", sort);
+            request.setAttribute("kind", kind);
             request.getRequestDispatcher("searchs.jsp").forward(request, response);
         }
     }

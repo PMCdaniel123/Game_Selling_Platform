@@ -243,7 +243,7 @@ body {
 .login input {
   width: 500px;
   height: 50px;
-  background-color: #8585854b;
+  background-color: #8585854b !important;
   border: none;
   padding: 10px;
 

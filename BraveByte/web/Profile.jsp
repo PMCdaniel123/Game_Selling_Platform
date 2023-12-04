@@ -8,6 +8,7 @@
     }
     AccountDAO accountDAO = new AccountDAO();
     Account acc = (Account) session.getAttribute("acc");
+    int num = accountDAO.numberofgame(acc.getId());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,19 +29,25 @@
     <body>
         <div class="page">
        
+        
         <div class="head-page">
             <img src="img/white.jpg" alt="">
             <div class="head-page_logo">BRAVE<ion-icon id='logo' name="shield-outline"></ion-icon>BYTE</div>
             <div class="head-page_select">
                 <a href="home.jsp" class="selection">HOME</a>
                 <a href="games.jsp" class="selection">GAMES</a>
-                <a href="cart" class="selection">CART</a>
-                <a href="" class="selection">TRANSACTION</a>
+
+ 
+                <a href="bill" class="selection">TRANSACTION</a>
+
                 <a href="library" class="selection">LIBRARY</a>
-                 <a href="Profile.jsp" class="selection">PROFILE</a>
-                  <a href="LogoutServlet" class="selection">Logout</a>
+                 
             </div>
-            <div class="head-page_user"></div>
+            <div class="head-page_user">
+                <a href="cart" class="selection"><ion-icon name="cart-outline"></ion-icon></a>
+                <a href="Profile.jsp" class="selection"><ion-icon name="person-circle-outline"></ion-icon></a>
+                  <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+            </div>
         </div>
 
 
@@ -53,21 +60,19 @@
                 </div>
                 <div class="sub-info">
                     <div class="basic-info1">
-                        <form action="UpdateProfileServlet" method="POST">
+                        <form action="UpdateProfileServlet" method="POST"class="user-info-form">
                             <div class="info info-name"><p>Fullname: </p>  <input type="text" name ="fullname" value="<%=acc.getFullname()%>" readonly></div>
                             <div class="info info-id"><p>ID :</p> <input type="text" name ="id" value=<%=acc.getId()%> readonly></div>
                             <div class="info info-email"><p>Email :</p> <input type="text" name ="email" value=<%=acc.getEmail()%> readonly></div>
                             <div class="info info-number"><p>Phone Number :</p> <input type="text" name="phone" value=<%=acc.getPhone()%> readonly></div>
-                            <div>
-                                <input type="submit" value="Save Change" class="info-submit" id="info-submit">
-                            </div>
+                            
 
                         </form>
 
 
                     </div>
                     <div class="basic-info2">
-                        <div class="basic-info2_element game-bought"><ion-icon name="game-controller-outline"></ion-icon> 15 </div>
+                        <div class="basic-info2_element game-bought"><ion-icon name="game-controller-outline"></ion-icon> <%=num%> </div>
                         <div class="basic-info2_element payment-method"> <ion-icon name="card-outline"></ion-icon> <ion-icon name="logo-paypal"></ion-icon> <ion-icon name="qr-code-outline"></ion-icon> <ion-icon name="cash-outline" class = unavailable></ion-icon></div>
                         <div class="basic-info2_element linked"> <ion-icon name="mail-outline" class = unavailable></ion-icon><ion-icon name="logo-facebook" class = unavailable></ion-icon><ion-icon name="logo-discord" class = unavailable></ion-icon><ion-icon name="logo-instagram" class = unavailable></ion-icon></div>
                         <button class = edit-info>Edit information <ion-icon name="create-outline"></ion-icon></button>
@@ -78,14 +83,21 @@
                     <button class = edit-pass> User Secutity </button>
                     <%
                         if (request.getParameter("status") !=null) {
-                            out.print(request.getParameter("status"));
+                     %>
+                     <script>
+                                function showAlert() {
+                                    alert("<%= request.getParameter("status") %>");
+                                }
+                                showAlert();
+                            </script>
+                     <%
                         }
                     %>
                     <div class="change-password_backgr">
                         <div class="change-password">
                             <ion-icon class = close name="close-circle-outline"></ion-icon>
                             <h1>Change Password</h1>
-                            <form action="UpdatePasswordServlet" method="POST">
+                            <form action="UpdatePasswordServlet" method="POST" class="change-password-form">
                                 <input type="password" name="old-password" placeholder="Old password" >
                                 <input type="password" name="new-password" placeholder="New password" >
                                 <input type="password" name="retype-password" placeholder="Type new password again" >

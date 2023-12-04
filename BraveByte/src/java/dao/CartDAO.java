@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.Game;
 import service.DBContext;
 
@@ -41,9 +42,9 @@ public class CartDAO extends DBContext {
         return games;
     }
     
-    public void removeGameFromCart(HttpServletRequest request, int idGame) {
+    public void removeGameFromCart(HttpSession session, int idGame) {
         String sql = "DELETE FROM dbo.Cart WHERE AccID = ? AND GID = ?";
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = (int) session.getAttribute("userId");
         try (
             PreparedStatement st = connection.prepareStatement(sql)
         ) {
@@ -56,8 +57,8 @@ public class CartDAO extends DBContext {
             // Handle the exception appropriately
         }
     }
-    public void addGameToCart(HttpServletRequest request, int idGame) {
-        int userId = (int) request.getSession().getAttribute("userId");
+    public void addGameToCart(HttpSession session, int idGame) {
+        int userId = (int) session.getAttribute("userId");
 
         String sql = "INSERT INTO dbo.Cart (AccID, GID) VALUES (?, ?)";
 
@@ -67,6 +68,21 @@ public class CartDAO extends DBContext {
             st.setInt(1, userId);
             st.setInt(2, idGame);
 
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
+        }
+    }
+    public void removeAllGamesFromCartForUser(HttpServletRequest request) {
+        int userId = (int) request.getSession().getAttribute("userId");
+
+        String sql = "DELETE FROM dbo.Cart WHERE AccID = ?";
+
+        try (
+            PreparedStatement st = connection.prepareStatement(sql)
+        ) {
+            st.setInt(1, userId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

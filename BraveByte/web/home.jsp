@@ -25,7 +25,27 @@
 
         %>
         <div class="page">
-            <%@include file="header.jsp" %>
+            
+        <div class="head-page">
+            <img src="img/white.jpg" alt="">
+            <div class="head-page_logo">BRAVE<ion-icon id='logo' name="shield-outline"></ion-icon>BYTE</div>
+            <div class="head-page_select">
+                <a href="home.jsp" class="selection selected">HOME</a>
+                <a href="games.jsp" class="selection">GAMES</a>
+
+      
+                <a href="bill" class="selection">TRANSACTION</a>
+
+                <a href="library" class="selection">LIBRARY</a>
+                 
+            </div>
+            <div class="head-page_user">
+                <a href="cart" class="selection"><ion-icon name="cart-outline"></ion-icon></a>
+                <a href="Profile.jsp" class="selection"><ion-icon name="person-circle-outline"></ion-icon></a>
+                  <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+            </div>
+        </div>
+
             <div class="body-page">
                 <div class="body-page_banner">
                     <div class="banner-content-cover">
@@ -44,15 +64,15 @@
                     <div class="catagories">
                         <div class="catagory ">
                             <div class="cata-img_action"></div>
-                            <a href="show-by-kind?kind=Action">Action</a>
+                            <a href="main?txtSearch=&minimum=&maximum=&kind=1&action=search">Action</a>
                         </div>
                         <div class="catagory ">
                             <div class="cata-img_adventure"></div>
-                            <a href="show-by-kind?kind=Adventure">Adventure</a>
+                            <a href="main?txtSearch=&minimum=&maximum=&kind=2&action=search">Adventure</a>
                         </div>
                         <div class="catagory">
                             <div class="cata-img_shooter"></div>
-                            <a href="show-by-kind?kind=Shooter">Shooter</a>
+                            <a href="main?txtSearch=&minimum=&maximum=&kind=3&action=search">Shooter</a>
                         </div>
 
                     </div>
@@ -65,7 +85,7 @@
                         <div class="game RDR2" style="background-image: url('<%= game.getPoster()%>');">
                             <div class="black-bgr"></div>
                             <div class="game-rate">
-                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <ion-icon name="bookmark-sharp"></ion-icon>
                                 <p><%= game.getRating()%></p>
                             </div>
                             <div class="game-descript">
@@ -73,8 +93,7 @@
                                 <h3 class="game-price">Price : <%= game.getPrice()%>$</h3>
                             </div>
                             <div class="game-button">
-                                <button class="game-info"> <ion-icon name="alert-outline"></ion-icon> </button>
-                                <form method="post" action="addgametocart">
+                                <form method="post" action="addgametocart" class="buy-form">
                                  <input type="hidden" name="idGame" value="<%= game.getId()%>" />
                                 <button class="add-to-cart"> <ion-icon name="cart-outline"></ion-icon></button></form>
                             </div>

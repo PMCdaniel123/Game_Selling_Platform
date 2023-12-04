@@ -43,7 +43,7 @@ public class GameListServlet extends HttpServlet {
                 page = Integer.parseInt(currentPage);
             }
             int perPage = 4;
-            pagging = paggingDAO.getListNews(page, perPage);
+            pagging = paggingDAO.getListGames(page, perPage);
             
             double tt = (pagging.getTotal() * 1.0) / perPage;
             int numberPage = (int) Math.ceil(tt);

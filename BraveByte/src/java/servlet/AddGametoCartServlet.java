@@ -63,7 +63,7 @@ public class AddGametoCartServlet extends HttpServlet {
         HttpSession session = request.getSession();
        String idGameStr = request.getParameter("idGame");
        int idGame = Integer.parseInt(idGameStr);
-        cartDAO.addGameToCart(request, idGame);
+        cartDAO.addGameToCart(session, idGame);
         response.sendRedirect(request.getHeader("referer"));
     }
 

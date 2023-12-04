@@ -10,29 +10,29 @@ package model;
  * @author user
  */
 public class Bill {
-    private int id;
+    private String billID;
     private int accID;
+     private String fullName;
     private String billDate;
-    private int paymentMethod;
     private double total;
 
     public Bill() {
     }
 
-    public Bill(int id, int accID, String billDate, int paymentMethod, double total) {
-        this.id = id;
+    public Bill(String billID, int accID, String fullName, String billDate, double total) {
+        this.billID = billID;
         this.accID = accID;
+        this.fullName = fullName;
         this.billDate = billDate;
-        this.paymentMethod = paymentMethod;
         this.total = total;
     }
 
-    public int getId() {
-        return id;
+    public String getBillID() {
+        return billID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBillID(String billID) {
+        this.billID = billID;
     }
 
     public int getAccID() {
@@ -43,20 +43,20 @@ public class Bill {
         this.accID = accID;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public String getBillDate() {
         return billDate;
     }
 
     public void setBillDate(String billDate) {
         this.billDate = billDate;
-    }
-
-    public int getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(int paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public double getTotal() {
@@ -67,9 +67,6 @@ public class Bill {
         this.total = total;
     }
 
-    @Override
-    public String toString() {
-        return "Bill{" + "id=" + id + ", accID=" + accID + ", billDate=" + billDate + ", paymentMethod=" + paymentMethod + ", total=" + total + '}';
-    }
+    
     
 }

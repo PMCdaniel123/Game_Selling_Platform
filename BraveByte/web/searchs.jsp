@@ -22,34 +22,73 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Dongle&family=Montserrat&family=Raleway:wght@600;700&display=swap"
             rel="stylesheet">
-<!--        <link rel="stylesheet" href="Style/bootstrap.css" type="text/css"/>
-        <link rel="stylesheet" href="Style/bootstrap.min.css" type="text/css"/>-->
+        <link rel="stylesheet" href="Style/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="Style/bootstrap.min.css" type="text/css"/>
         <link rel="stylesheet" href="Style/GamesStyle.css">
     </head>
     <body>
         <%
             GameDAO gdao = new GameDAO();
-            ArrayList<Game> searchs = (ArrayList<Game>) request.getAttribute("searchs");
+            String keyword = (String) request.getAttribute("keyword");
+            String maximum = (String) request.getAttribute("maximum");
+            String minimum = (String) request.getAttribute("minimum");
+            String sort = (String) request.getAttribute("sort");
+            String kind = (String) request.getAttribute("kind");
+//            ArrayList<Game> searchs = (ArrayList<Game>) request.getAttribute("searchs");
+//
+//            if (searchs == null) {
+//                searchs = gdao.getGameList();
+//            }
+            PaggingDAO pdao = new PaggingDAO();
+            Pagging pagging = pdao.getListSearch(keyword, minimum, maximum, kind, sort, 1, 4);
+            int count = gdao.searchGames(keyword, minimum, maximum, kind, sort).size();
 
-            if (searchs == null) {
-                searchs = gdao.getGameList();
+            int numberPage = (int) Math.ceil((count * 1.0) / pagging.getPerPage());
+            int currentPage = 1;
+            ArrayList<Game> list = pagging.getItems();
+            if (request.getAttribute("pagging") != null) {
+                pagging = (Pagging) request.getAttribute("pagging");
+                list = pagging.getItems();
+                currentPage = pagging.getPage();
             }
         %>
         <div class="page">
-            <%@include file="header.jsp" %>
+            
+        <div class="head-page">
+            <img src="img/white.jpg" alt="">
+            <div class="head-page_logo">BRAVE<ion-icon id='logo' name="shield-outline"></ion-icon>BYTE</div>
+            <div class="head-page_select">
+                <a href="home.jsp" class="selection">HOME</a>
+                <a href="games.jsp" class="selection selected">GAMES</a>
+
+                <a href="cart" class="selection">CART</a>
+                <a href="bill" class="selection">TRANSACTION</a>
+
+                <a href="library" class="selection">LIBRARY</a>
+                 
+            </div>
+            <div class="head-page_user">
+                <a href="cart" class="selection"><ion-icon name="cart-outline"></ion-icon></a>
+                <a href="Profile.jsp" class="selection"><ion-icon name="person-circle-outline"></ion-icon></a>
+                  <a href="LogoutServlet" class="selection"><ion-icon name="log-out-outline"></ion-icon></a>
+            </div>
+        </div>
+
 
             <div class="body-page">
-                <div class="body-up">
-                    <form action="main" method="get" class="formlogin">
+                <div class="">
+                                   <div class="">
+                    <form action="main" method="get" class="body-up">
                         <div class="search-input">
-                            <input type="text" class="search" placeholder="<%= (request.getAttribute("keyword") == null) ? "Enter game name or publicer" : request.getAttribute("keyword")%>" name="txtSearch">
+                            <input type="text" class="search" placeholder="Enter game name or publicer" name="txtSearch">
                             <div class="search-price">
-                                <p>Minimum : </p><input type="text" name="minimum" placeholder="<%= (request.getAttribute("minimum") == null) ? "" : request.getAttribute("minimum")%>">
-                                <p>Maximum : </p> <input type="text" name="maximum" placeholder="<%= (request.getAttribute("maximum") == null) ? "" : request.getAttribute("maximum")%>">
+                                <p>Minimum : </p><input type="text" name="minimum">
+                                <p>Maximum : </p> <input type="text" name="maximum">
                             </div>
                         </div>
                         <div class="search-choose">
-                            <div class="sort-buttons">
+                            <div class="sort-fields">
+                                <div class="sort-buttons">
                                 <label class="category action">
                                     <input type="radio" name="kind" id="adventure" value="1">
                                     <p class=check-mark>Action</p>
@@ -83,20 +122,23 @@
                                 </label>
                             </div>
 
+                            </div>
                             <button class = search-button name="action" value="search"> <ion-icon name="search-outline"></ion-icon> </button>
                         </div>
                     </form>
+                </div>
                 </div>
                 <div class="body-left">
                     <h1 style="color: red;">Games</h1>
                     <div class="games">
                         <%
-                            for (Game game : searchs) {
+
+                            for (Game game : list) {
                         %>
                         <div class="game RDR2" style="background-image: url('<%= game.getPoster()%>');">
                             <div class="black-bgr"></div>
                             <div class="game-rate">
-                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <ion-icon name="bookmark-sharp"></ion-icon>
                                 <p><%= game.getRating()%></p>
                             </div>
                             <div class="game-descript">
@@ -104,8 +146,9 @@
                                 <h3 class="game-price">Price : <%= game.getPrice()%>$</h3>
                             </div>
                             <div class="game-button">
-                                <button class="game-info"> <ion-icon name="alert-outline"></ion-icon> </button>
-                                <button class="add-to-cart"> <ion-icon name="cart-outline"></ion-icon></button>
+                                <form method="post" action="addgametocart">
+                                    <input type="hidden" name="idGame" value="<%= game.getId()%>" />
+                                    <button class="add-to-cart"> <ion-icon name="cart-outline"></ion-icon></button></form>
                             </div>
 
                         </div>
@@ -114,14 +157,57 @@
                         %>
                     </div>
                 </div>
+                <%
+                    //main?txtSearch=&minimum=&maximum=&kind=2&action=search
+                    String url = "main?";
+                    if (keyword == null) {
+                        url += "txtSearch=";
+                    } else {
+                        url += ("txtSearch=" + keyword);
+                    }
+                    if (minimum == null) {
+                        url += "&minimum=";
+                    } else {
+                        url += ("&minimum=" + minimum);
+                    }
+                    if (maximum == null) {
+                        url += "&maximum=";
+                    } else {
+                        url += ("&maximum=" + maximum);
+                    }
+                    if (kind != null) {
+                        url += ("&kind=" + kind);
+                    }
+                    if (sort != null) {
+                        url += ("&sort=" + sort);
+                    }
+                    url += "&action=search";
+                %>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item ">
+                            <a class="page-link <%= currentPage == 1 ? "disabled" : null%>" href="<%= url%>&currentPage=<%= currentPage - 1%>">Previous</a>
+                        </li>
 
+                        <%
+                            for (int i = 1; i <= numberPage; i++) {%>
+                        <li class="page-item">
+                            <a class="page-link <%= currentPage == i ? "active" : null%> " href="<%= url%>&currentPage=<%= i%>"><%= i%></a>
+                        </li>
+                        <% }%>
+
+                        <li class="page-item">
+                            <a class="page-link <%= currentPage == numberPage ? "disabled" : null%>"  href="<%= url%>&currentPage=<%= currentPage + 1%>">Next</a>
+                        </li>
+                    </ul>
+                </nav>     
             </div>
             <%@include file="footer.jsp" %>
         </div>
         <script src="Script/HomeScript.js"></script>
-<!--        <script src="Script/bootstrap.js"></script>
+        <script src="Script/bootstrap.js"></script>
         <script src="Script/bootstrap.bundle.js"></script>
-        <script src="Script/bootstrap.min.js"></script>-->
+        <script src="Script/bootstrap.min.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
