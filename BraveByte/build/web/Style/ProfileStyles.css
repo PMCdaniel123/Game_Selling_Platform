@@ -1,0 +1,352 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: aliceblue;
+}
+body {
+  background-image: linear-gradient(165deg, #004565,rgb(122, 0, 99), #ff0000c7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Dongle", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: transparent !important;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: black 8px 8px 8px 3px;
+  position: relative; 
+}
+.page::before {
+    content: "";
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/107064014_p2.png);
+    filter: blur(50px) brightness(0.7);
+    opacity: 0.7;
+    z-index: -1; 
+  }
+.head-page{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+}
+.head-page img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+.head-page_logo{
+    width: 23%;
+    height: 100%;
+    /* background-color: rgba(160, 160, 160, 0.414); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    
+}
+.head-page_select{
+    width: 54%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.123); */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.head-page_select a{
+    transform: skewX(-0deg);
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 700;
+}
+.head-page_user{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap : 40px;
+    font-size: 2rem;
+}
+.head-page_user a{
+    transform: skewX(-0deg);
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 700;
+
+}
+.head-page_user{
+    width: 23%;
+    height: 100%;
+    /* background-color: rgba(160, 160, 160, 0.414); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logo{
+    color: rgb(255, 49, 49);
+    margin: 0 2px;
+    margin-bottom: 2px;
+    
+}
+.body-page{
+    margin-top: -4vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.main-info{
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    top: 70px;
+}
+.main-info h1{
+    position: relative;
+    top: -40px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.main-info h1 ion-icon {
+    color: rgb(1, 94, 255);
+}
+.avatar-cover{
+    width: 220px;
+    height: 220px;
+    background-color: rgba(163, 163, 163, 0.238);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.avatar{
+    background-image: url(../img/Capthanhdat_mid_age_cyber_king_short_beard_with_body_and_head_r_4874d454-5513-4218-8c6a-76033e56cfa1.png);
+    background-position: center;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.sub-info{
+    margin-top: 180px;
+    background-color: rgba(163, 163, 163, 0.238);
+    width: 70%;
+    height: 45vh;
+    padding: 0 8vw;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.basic-info1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 40%;
+}
+.info{
+
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 3px solid #cfcfcf5d;
+}
+.info p{
+    font-weight: bold;
+    margin-right: 10px !important;
+    background-color: #cfcfcf5d;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 0;
+     white-space: nowrap;
+}
+.basic-info2{
+
+    width: 40%;
+    height: 80%;
+    margin-top: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+}
+.basic-info2_element{
+    font-family: 'Segoe UI';
+    background-color: #cfcfcf35;
+    border-radius: 5px;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    font-size: 2rem;
+
+}
+.game-bought{
+    background-color: transparent;
+    border: 1px rgba(255, 255, 255, 0.385) solid;
+    justify-content: center;
+}
+.unavailable{
+    color: rgba(240, 248, 255, 0.242);
+}
+.edit-info{
+    font-family: 'Segoe UI';
+    background-color: #cfcfcf35;
+    border-radius: 5px;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+    color: aliceblue;
+    border: none;
+}
+.change-password{
+    margin: 20px;
+    width: 400px;
+    position: relative;
+}
+.edit-pass{
+    margin: 20px;
+    width: 400px;
+    font-family: 'Segoe UI';
+    background-color: #cfcfcf35;
+    border-radius: 5px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+    color: aliceblue;
+    border: none;
+}
+.change-password_backgr{
+ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+.change-password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30vw;
+    height: 50vh;
+    gap: 20px;
+    border: white solid 1px;
+    padding: 70px 150px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.074);
+    z-index: 2;
+}
+.change-password-form{
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30vw;
+    height: 50vh;
+    gap: 20px;
+    z-index: 2;
+}
+.change-password-form input{
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+    border-radius: 5px;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+    justify-content: center;
+    padding-left:10px ;
+    background-color: transparent;
+    border : 1px solid #ffffff63;
+}
+.change-password-form input::placeholder{
+    color: rgba(240, 248, 255, 0.796);
+}
+.change-password-form button{
+    font-family: 'Segoe UI';
+    background-color: #cfcfcf35;
+    border-radius: 5px;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    color: aliceblue;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+    border: 1px rgba(255, 255, 255, 0.385) solid;
+    justify-content: center;
+}
+.basic-info1 input {
+    background-color: transparent !important;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    width: 65%;
+    pointer-events: none;
+}
+.close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem;
+}
+.info-submit{
+    display: none;
+}
+.selected{
+    padding-top : 21px;
+    padding-bottom: 17px;
+    border-bottom: solid 5px red!important;
+}

@@ -1,0 +1,442 @@
+body,
+html {
+    width: 100%;
+    margin: 0;
+    color: aliceblue;
+}
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Dongle", sans-serif;
+    font-family: "Montserrat", sans-serif;
+    font-family: "Raleway", sans-serif;
+    background-color:aliceblue;
+}
+.page {
+    width: 100%;
+    border-radius: 5px;
+    background-color: transparent !important;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    gap : 40px;
+}
+.page::before {
+    content: "";
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url(/Img/107064014_p2.png); */
+    filter: blur(50px) brightness(0.7);
+    opacity: 0.7;
+    z-index: -1;
+}
+.head-page{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.763);
+}
+.head-page img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+.head-page_logo{
+    width: 23%;
+    height: 100%;
+    /* background-color: rgba(160, 160, 160, 0.414); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+
+}
+.head-page_select{
+    width: 54%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.123); */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.head-page_select a{
+    transform: skewX(-0deg);
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 700;
+
+}
+.head-page_user{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap : 40px;
+    font-size: 2rem;
+}
+.head-page_user a{
+    transform: skewX(-0deg);
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 700;
+
+}
+.head-page_user{
+    width: 23%;
+    height: 100%;
+    /* background-color: rgba(160, 160, 160, 0.414); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logo{
+    color: rgb(255, 49, 49);
+    margin: 0 2px;
+    margin-bottom: 2px;
+
+}
+.body-page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.body-page_banner {
+    width: 85%;
+    height: 70vh;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../img/2389914.webp);
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s ease-in;
+}
+.banner-content-cover{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #00023110,rgba(37, 44, 72, 0.216), #00001750);
+    top: 0;
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+}
+.banner-content{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.889);
+    height: 40%;
+    width: 500px;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+.banner-content p {
+    color: rgb(0, 88, 91);
+    border-bottom: 5px solid rgb(0, 88, 91);
+    width: 50%;
+    padding-bottom: 10px;
+}
+.banner-content h1 {
+    color: rgb(255, 42, 0);
+}
+.banner-content button {
+    color: white;
+    justify-self: flex-start;
+    width: 200px;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px red solid;
+    background-color: red ;
+}
+.catagories-field{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.catagories-field h1 {
+    color: red;
+    margin-bottom: 0px;
+}
+.catagories-field p{
+    color: black ;
+}
+.catagories{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+}
+.catagory{
+    height: 530px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.catagory a{
+    margin: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    font-family: 'Electrolize', sans-serif;
+}
+.catagory a:hover{
+    color: red;
+    
+}
+.catagory a:active{
+    color: red;
+    filter: drop-shadow(0px 4px 10px rgb(255, 0, 0));
+    
+}
+.cata-img_action{
+    border-radius: 10px;
+    width: 100%;
+    height: 90%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../img/nier-nier-automata-anime-katana-wallpaper-preview.jpg);
+}
+.cata-img_adventure{
+    border-radius: 10px;
+    width: 100%;
+    height: 90%;
+    background-size: cover;
+    background-image: url(../img/naughty-dog-the-last-of-us-part-ii-playstation-ellie-ashley-johnson-hd-wallpaper-preview.jpg);
+    background-position: center;
+}
+.cata-img_shooter{
+    border-radius: 10px;
+    width: 100%;
+    height: 90%;
+    background-size: cover;
+    background-image: url(../img/shooter.jpg);
+    background-position: center;
+}
+.game-showing{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-showing h1{
+    color: red;
+    border-bottom: red 2px solid;
+    padding-bottom: 10px;
+}
+.top-game {
+    width: 100%;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.game{
+    width: 270px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    font-family: "Segoe UI";
+
+}
+.black-bgr{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #00000000,#0000005c, #000000);
+    border-radius: 8px;
+}
+.game-rate{
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game-rate ion-icon{
+    font-size: 4rem;
+    position: absolute;
+
+}
+.game-rate p{
+    margin-top: 5px;
+    font-weight: bold !important;
+    color: #5e5e5e;
+    z-index: 5;
+}
+.game-descript{
+    position: absolute;
+    left: 10px;
+    bottom: 55px;
+}
+.game-descript h3, h2{
+    margin: 0;
+}
+.game-descript h2{
+    width: 80%;
+    margin-bottom: 5px;
+}
+.game-descript h3{
+    background-color: rgba(132, 132, 132, 0.4);
+    width: 150px;
+    padding: 5px;
+    border-radius: 1px;
+    font-size: 1rem;
+}
+.game-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 100%;
+    display: flex;
+    gap : 15px
+}
+.game-info {
+    width: 35px;
+    height: 35px;
+    color: aliceblue;
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-to-cart{
+    width: 190px;
+    height: 35px;
+    background-color: transparent;
+    border: solid 1px white;
+    color: aliceblue;
+    border-radius: 5px  ;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.add-to-cart::before{
+    position: absolute;
+    z-index: 0;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    transition: all 0.5s ease-in;
+    border-radius: 5px;
+}
+.add-to-cart:hover::before {
+    width: 100%;
+    background-color: red;
+    transition: all 0.1s ease-in;
+}
+.add-to-cart:hover {
+    border: none;
+}
+.see-more-game{
+    height: 50px;
+    width: 200px;
+    border-radius: 5px;
+    border: red solid 1px;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    margin: 30px 0;
+}
+.foot-page{
+    width: 100%;
+    height: 300px;
+    background-color: rgb(47, 47, 47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.foot-page h1 {
+    margin-bottom: 10px;
+    color: rgba(255, 0, 0, 0);
+    -webkit-text-stroke:  red 1px;
+    font-size: 2rem;
+}
+.foot-page p {
+    font-weight : bold;
+    font-size: 1rem;
+}
+.foot-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.foot-list p {
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.047);
+    border-radius: 4px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+.foot-contact{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    font-size: 2.5rem;
+}
+.foot-contact ion-icon{
+    color: red;
+    margin: 10px;
+    margin-bottom: 28px;
+}
+.foot-page span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.567);
+}
+.buy-form{
+    width: 100%;
+    height: 100%;
+}
+.selected{
+    padding-top : 21px;
+    padding-bottom: 17px;
+    border-bottom: solid 5px red!important;
+}
